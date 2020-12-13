@@ -24,6 +24,8 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 •	Use otu_labels as the hovertext for the chart.
 
+![Bar Chart](https://waustralia.bootcampcontent.com/root/waus-perth-data-pt-08-2020-u-c/raw/master/02-Homework/15-Interactive-Visualizations-and-Dashboards/Instructions/Images/bacteria.jpg)
+
 **Bubble Chart:** <br>
 
 •	Use otu_ids for the x values.
