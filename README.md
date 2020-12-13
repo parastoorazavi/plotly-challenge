@@ -56,4 +56,4 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 •	Update the chart whenever a new sample is selected.
 
-![Belly Button Washing Frequency](https://github.com/parastoorazavi/plotly-challenge/blob/main/Images/bubble_chart.png?raw=true)
+![Belly Button Washing Frequency](https://github.com/parastoorazavi/plotly-challenge/blob/main/Images/gauge.png?raw=true)
