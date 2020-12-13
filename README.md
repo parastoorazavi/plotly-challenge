@@ -1,4 +1,5 @@
 # plotly-challenge
+## Belly Button Biodiversity
 
 
 ## 📝 Table of Contents
@@ -8,32 +9,32 @@
 - [Bonus Part](#bonus_part)
 
 ## 🧐 About <a name = "about"></a>
-There are some data of the company "Pewlett Hackard". They are going to work on a project which doing some research on employees of the corporation from the 1980s and 1990s.All that remain of the database of employees from that period are six CSV files. For this project we are donig:
-1.	Data Modeling
-2.	Data Engineering
-3.	Data Analysis
-
+Everyday, Data Science and Machine Learning teams rely on Plotly for creating beautiful analytic apps included Interactive charts and maps.
+Plotly provides online graphing, analytics, and statistics tools for individuals and collaboration, as well as scientific graphing libraries for Python, R, Javascript and ..
+In this project, we will build an interactive dashboard to explore the Belly Button Biodiversity dataset, which catalogs the microbes that colonize human navels.
+The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
-**Data Modeling:** <br>
-Inspect the CSVs and sketch out an ERD of the tables. 
+**Horizontal Bar Chart:** <br>
+•	Use sample_values as the values for the bar chart. 
+•	Use otu_ids as the labels for the bar chart. 
+•	Use otu_labels as the hovertext for the chart.
 
-**Data Engineering:** <br>
-•	Use the information to create a table schema for each of the six CSV files. 
-•	Import each CSV file into the corresponding SQL table. 
+**Bubble Chart:** <br>
+•	Use otu_ids for the x values.
+•	Use sample_values for the y values. 
+•	Use sample_values for the marker size.
+•	Use otu_ids for the marker colors.
+•	Use otu_labels for the text values.
 
-**Data Analysis:** <br>
-1.	List the following details of each employee: employee number, last name, first name, sex, and salary.
-2.	List first name, last name, and hire date for employees who were hired in 1986.
-3.	List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
-4.	List the department of each employee with the following information: employee number, last name, first name, and department name.
-5.	List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
-6.	List all employees in the Sales department, including their employee number, last name, first name, and department name.
-7.	List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
-8.	In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+**Display:** <br>
+•	Display the sample metadata, i.e., an individual's demographic information.
+•	Display each key-value pair from the metadata JSON object somewhere on the page.
+•	Update all of the plots any time that a new sample is selected.
 
-## :doughnut:Bonus Part -	Import the SQL database into Pandas. <a name = "bonus_part"></a>
+## :doughnut:Bonus Part -	Belly Button Washing Frequency. <a name = "bonus_part"></a>
 
-1.	Create a histogram to visualize the most common salary ranges for employees.
-2.	Create a bar chart of average salary by title.
+•	Adapt the Gauge Chart from https://plot.ly/javascript/gauge-charts/ to plot the weekly washing frequency of the individual.
+•	You will need to modify the example gauge code to account for values ranging from 0 through 9.
+•	Update the chart whenever a new sample is selected.
