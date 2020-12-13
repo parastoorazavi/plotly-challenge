@@ -17,6 +17,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 **Horizontal Bar Chart:** <br>
+
 •	Use sample_values as the values for the bar chart. 
 
 •	Use otu_ids as the labels for the bar chart. 
@@ -24,6 +25,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 •	Use otu_labels as the hovertext for the chart.
 
 **Bubble Chart:** <br>
+
 •	Use otu_ids for the x values.
 
 •	Use sample_values for the y values. 
@@ -35,6 +37,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 •	Use otu_labels for the text values.
 
 **Display:** <br>
+
 •	Display the sample metadata, i.e., an individual's demographic information.
 
 •	Display each key-value pair from the metadata JSON object somewhere on the page.
@@ -44,5 +47,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 ## :doughnut:Bonus Part -	Belly Button Washing Frequency. <a name = "bonus_part"></a>
 
 •	Adapt the Gauge Chart from https://plot.ly/javascript/gauge-charts/ to plot the weekly washing frequency of the individual.
+
 •	You will need to modify the example gauge code to account for values ranging from 0 through 9.
+
 •	Update the chart whenever a new sample is selected.
