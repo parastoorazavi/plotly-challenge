@@ -55,3 +55,5 @@ The dataset reveals that a small handful of microbial species (also called opera
 •	You will need to modify the example gauge code to account for values ranging from 0 through 9.
 
 •	Update the chart whenever a new sample is selected.
+
+![Belly Button Washing Frequency](https://github.com/parastoorazavi/plotly-challenge/blob/main/Images/bubble_chart.png?raw=true)
