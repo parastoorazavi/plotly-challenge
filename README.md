@@ -38,7 +38,7 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 •	Use otu_labels for the text values.
 
-![Bubble Chart](https://github.com/parastoorazavi/plotly-challenge/blob/main/Images/hw01.png?raw=true)
+![Bubble Chart](https://github.com/parastoorazavi/plotly-challenge/blob/main/Images/bubble_chart.png?raw=true)
 
 **Display:** <br>
 
