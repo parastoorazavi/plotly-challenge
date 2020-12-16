@@ -37,7 +37,7 @@ var otu_id = data.samples[index].otu_ids.slice(0,10).reverse();
 // Create Horizontal Bar Chart Trace
 var trace1 = [{
   x: sample_values.slice(0,10).reverse(),
-  y: otu_id.forEach(element => `OTU  + ${element}` ),
+  y: otu_id.map(element => "OTU " + element ),
   text:otu_labels.slice(0,10).reverse(),
   type: "bar",
   orientation: 'h'
@@ -90,9 +90,6 @@ var layout = {
   //     type: "indicator",
   //     mode: "gauge+number"
   // }];
-
-
-  // Object.entries(data.metadata[index])
 
 
   d3.selectAll("#selDataset").on("change", optionChanged);
