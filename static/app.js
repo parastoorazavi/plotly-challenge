@@ -70,7 +70,7 @@
   }
   }];
   var layout = {
-    title:" Top 10 OTUs(operational taxonomic units) ",
+    title: {text: 'Sample Values of each individual samples by OTUs Id', font:{size:20}},
     xaxis: {
     title: "OTU ID"},
   };
