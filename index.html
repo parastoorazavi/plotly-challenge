@@ -11,21 +11,21 @@
 
 <body>
 
-  <div class="container">
+  <div class="container" style="background-color:#f2f5f0 ">
     <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Belly Button Biodiversity Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
-      </div>
+    <div class="col-md-12 img-fluid text-center" style="background-image: url(./Images/Navelgazing.jpg); width: 1170px; height: 300px; alt: microbes; opacity: 75%; margin-bottom: 30px;">
+      <h1 style="color: rgb(255, 255, 255); font-size:45px; margin-top: 95px;">Belly Button Biodiversity Dashboard</h1>
+      <p style="color: aliceblue; font-size:25px;">Use the interactive charts below to explore the dataset</p>
+    </div>  
     </div>
     <div class="row">
       <div class="col-md-2">
-        <div class="well">
-          <h5>Test Subject ID No.:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        <div class="well" style="background-color: rgba(217, 233, 193, 0.767);">
+          <h5>Test Subject ID:</h5>
+          <select id="selDataset"></select>
         </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
+        <div class="panel panel-primary" style="border-color:#294d19">
+          <div class="panel-heading" style="background-color: rgba(173, 194, 142, 0.767);">
             <h3 class="panel-title">Demographic Info</h3>
           </div>
           <div id="sample-metadata" class="panel-body"></div>
@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12" style="margin-top: 30px;">
         <div id="bubble"></div>
       </div>
     </div>

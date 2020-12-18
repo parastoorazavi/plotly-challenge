@@ -1,52 +1,64 @@
-// Use d3.json() to fetch data from JSON file
-d3.json("samples.json").then(function updatePlotly(data) {
-// console.log(data);
-var sampleNames = data.names;
-// console.log(sampleNames);
-
-// Create dropdown menu and Assign the value of its option to a variable 
-d3.select("#selDataset").selectAll("option")
-                    .data(sampleNames) 
-                    .enter()
-                    .append("option")
-                    .text(function (d) { return `${d}`});
-                                       
-var dropDown = d3.select("#selDataset")
-var dataset = dropDown.property("value");
-
-// Create Panel
-var index = sampleNames.indexOf(dataset);
-d3.select("#sample-metadata").html("");
-d3.select("#sample-metadata").selectAll("p")
-                    .data(Object.entries(data.metadata[index])) 
-                    .enter()
-                    .append("p")
-                    .text(function (d) { return `${d[0]}: ${d[1]}`})
-var dropDown = d3.select("#selDataset")
-var dataset = dropDown.property("value");
-// Assign plot's info
-var sample_values = data.samples[index].sample_values;
-// console.log(sample_values);
-var otu_ids = data.samples[index].otu_ids;
-// console.log(otu_ids);
-var otu_labels = data.samples[index].otu_labels;
-// console.log(otu_labels);
-var otu_id = data.samples[index].otu_ids.slice(0,10).reverse();
-// console.log(otu_ids);
-
-// Create Horizontal Bar Chart Trace
-var trace1 = [{
-  x: sample_values.slice(0,10).reverse(),
-  y: otu_id.map(element => "OTU " + element ),
-  text:otu_labels.slice(0,10).reverse(),
-  type: "bar",
-  orientation: 'h'
-}];
+  // Use d3.json() to fetch data from JSON file
+  d3.json("samples.json").then(function updatePlotly(data) {
+    // console.log(data);
   
-  Plotly.newPlot("bar", trace1);
+  // Create dropdown menu and Assign the value of its option to a variable 
+  var nameData = data.names;
+  // console.log(nameData);
+  d3.select("#selDataset")
+    .selectAll("option")
+    .data(nameData)
+    .enter().append("option")
+    .text(function(d) { return `${d}` });
+  var dropdownMenu = d3.select("#selDataset");
+  var dataset = dropdownMenu.property("value");
+  
+  // Create Demographic Panel
+  var index = nameData.indexOf(dataset);
+  d3.select("#sample-metadata").html("");
+  d3.select("#sample-metadata");
+  var demographicPanel = d3.select("#sample-metadata");    
+  var metaDataInfo = data.metadata[index];
+  var metaDataInfoPanel = Object.entries(metaDataInfo).forEach(([key,value]) => {
+    demographicPanel.append("p").text(`${key}: ${value}`);
+  });   
+  
+  // Assign plot's info
+  var sample_values = data.samples[index].sample_values;
+  // console.log(sample_values);
+  var otu_ids = data.samples[index].otu_ids;
+  // console.log(otu_ids);
+  var otu_id = otu_ids.slice(0,10).reverse();
+  // console.log(otu_id);
+  var otu_labels = data.samples[index].otu_labels;
+  // console.log(otu_labels);
+  var metaDataWfreq = metaDataInfo.wfreq;
+  console.log(metaDataWfreq);
 
-// Create Bubble Chart Trace
-var trace2 = [{
+  function init() {
+
+  // Create Horizontal Bar Chart Trace  
+  var trace1 = [{
+    x: sample_values.slice(0,10).reverse(),
+    y: otu_id.map(function(item){return "OTU " + item}),
+    text:otu_labels.slice(0,10).reverse(),
+    type: "bar",
+    orientation: 'h',
+    marker:{
+      color:'#3a7e41'
+    }
+  }];
+  
+  var layout = {
+    title:" Top 10 OTUs(operational taxonomic units) ",
+    xaxis: {
+    title: "values of samples"},
+  };
+
+  Plotly.newPlot("bar", trace1, layout);
+  
+  // Create Bubble Chart Trace
+  var trace2 = [{
     x: otu_ids,
     y: sample_values,
     text: otu_labels,
@@ -55,48 +67,92 @@ var trace2 = [{
     color: otu_ids,
     colorscale: "Earth",
     size: sample_values 
-}
-}];
-var layout = {
+  }
+  }];
+  var layout = {
+    title:" Top 10 OTUs(operational taxonomic units) ",
     xaxis: {
     title: "OTU ID"},
-};
+  };
   
   Plotly.newPlot("bubble", trace2, layout);
+
+//   // Create Gauge Chart Trace
+//   var trace3 = [{
+//     type: 'pie',
+//     showlegend: false,
+//     hole: 0.4,
+//     rotation: 90,
+//     values: [9,9,9,9,9,9,9,9,9,81],
+//     text: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9'],
+//     direction: 'clockwise',
+//     textinfo: 'text',
+//     textposition: 'inside',
+//     marker: {
+//       colors: ["rgb(247,242,236)",
+//       "#f8f3ec",
+//       "#f4f1e5",
+//       "#e9e6ca",
+//       "#e5e7b3",
+//       "#d5e49d",
+//       "#b7cc92",
+//       "#8cbf88",
+//       "#8abb8f",
+//       "rgba(255, 300, 255, 0)"],
+//       labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9'],
+//       hoverinfo: 'label'
+//     }
+//   }]
+
+//   // needle
+//   var degrees = 50, radius = .9
+//   var radians = degrees * Math.PI / 180
+//   var x = -1 * radius * Math.cos(radians) * metaDataWfreq
+//   var y = radius * Math.sin(radians)
+
+//   var layout = {
+//     'shapes': [
+//       {
+//           'type': 'path',
+//           'path': 'M 2.235 0.5 L 2.24 0.65 L 0.245 0.5 Z',
+//           'fillcolor': '#830308',
+//           'line': {
+//               'width': 5.5
+//           },
+//           'x': 'paper',
+//           'y': 'paper'
+//       }
+//   ],
+//   'annotations': [
+//     {
+//         'xref': 'paper',
+//         'yref': 'paper',
+//         'x': 0.23,
+//         'y': 0.45,
+//         'text': '50',
+//         'showarrow': False
+//     }
+// ],
+//     title: 'Belly Botton Washing Frequency',
+//     xaxis: {visible: false, range: [-1, 1]},
+//     yaxis: {visible: false, range: [-1, 1]}
+//   };
+
+//   Plotly.plot('gauge', trace3, layout)
+
+  }
+  init();
   
-  // Create Gauge Chart Trace
-  //   var trace3 = [{
-  //     angle: 0,
-  //     lineWidth: 0.4,
-  //     radiusScale: 0.8,
-  //     pointer: {
-  //       length: 0.37, 
-  //       strokeWidth: 0.026, 
-  //       color: '#961709' 
-  //     },
-  //     var target = document.getElementById('foo'); // your canvas element
-  //     var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
-  //     gauge.maxValue = 10; // set max gauge value
-  //     gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
-  //     gauge.animationSpeed = 71; // set animation speed (32 is default value)
-  //     gauge.set(2); // set actual value
-      
-  //     Plotly.newPlot('gauge', data, layout);
-
-
-  //     domain: { x: [0, 1], y: [0, 1] },
-  //     value: 270,
-  //     title: { text: "Speed" },
-  //     type: "indicator",
-  //     mode: "gauge+number"
-  // }];
-
-
+  // Call updatePlotly() when a change takes place to the DOM
   d3.selectAll("#selDataset").on("change", optionChanged);
 
-    function optionChanged() {
-      var dropDown = d3.select("#selDataset");
-      var dataset = dropDown.property("value");
-      updatePlotly(data);
-    }
+  // This function is called when a dropdown menu item is selected
+  function optionChanged() {
+    var dropdownMenu = d3.select("#selDataset");
+    var dataset = dropdownMenu.property("value");
+    updatePlotly(data);
+  }
   });
+  
+  
+  
