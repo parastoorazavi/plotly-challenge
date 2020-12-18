@@ -23,7 +23,7 @@
     demographicPanel.append("p").text(`${key}: ${value}`);
   });   
   
-  // Assign plot's info
+  // Assign plot's information
   var sample_values = data.samples[index].sample_values;
   // console.log(sample_values);
   var otu_ids = data.samples[index].otu_ids;
