@@ -33,7 +33,7 @@
   var otu_labels = data.samples[index].otu_labels;
   // console.log(otu_labels);
   var metaDataWfreq = metaDataInfo.wfreq;
-  console.log(metaDataWfreq);
+  // console.log(metaDataWfreq);
 
   function init() {
 
@@ -77,68 +77,52 @@
   
   Plotly.newPlot("bubble", trace2, layout);
 
-//   // Create Gauge Chart Trace
-//   var trace3 = [{
-//     type: 'pie',
-//     showlegend: false,
-//     hole: 0.4,
-//     rotation: 90,
-//     values: [9,9,9,9,9,9,9,9,9,81],
-//     text: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9'],
-//     direction: 'clockwise',
-//     textinfo: 'text',
-//     textposition: 'inside',
-//     marker: {
-//       colors: ["rgb(247,242,236)",
-//       "#f8f3ec",
-//       "#f4f1e5",
-//       "#e9e6ca",
-//       "#e5e7b3",
-//       "#d5e49d",
-//       "#b7cc92",
-//       "#8cbf88",
-//       "#8abb8f",
-//       "rgba(255, 300, 255, 0)"],
-//       labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9'],
-//       hoverinfo: 'label'
-//     }
-//   }]
+  // Create Gauge Chart Trace
+  var trace3 = [{
+    type: 'pie',
+    showlegend: false,
+    hole: 0.4,
+    rotation: 90,
+    values: [9,9,9,9,9,9,9,9,9,81],
+    text: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9'],
+    direction: 'clockwise',
+    textinfo: 'text',
+    textposition: 'inside',
+    marker: {
+      colors: ["#f8f3ec","#f4f1e5","#e9e6ca","#e5e7b3","#d5e49d","#b7cc92","#8cbf88","#8abb8f","#85b48a","#ffffff"],
+      labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9'],
+      hoverinfo: 'label'}
+  }]
 
-//   // needle
-//   var degrees = 50, radius = .9
-//   var radians = degrees * Math.PI / 180
-//   var x = -1 * radius * Math.cos(radians) * metaDataWfreq
-//   var y = radius * Math.sin(radians)
+  // needle
+  var degrees = metaDataWfreq, radius = .5
+  console.log(degrees)
+  var radians = degrees * Math.PI / 180
+  console.log(radians)
+  var x = radius * Math.cos(radians) 
+  console.log(x)
+  var y = radius * Math.sin(radians)
 
-//   var layout = {
-//     'shapes': [
-//       {
-//           'type': 'path',
-//           'path': 'M 2.235 0.5 L 2.24 0.65 L 0.245 0.5 Z',
-//           'fillcolor': '#830308',
-//           'line': {
-//               'width': 5.5
-//           },
-//           'x': 'paper',
-//           'y': 'paper'
-//       }
-//   ],
-//   'annotations': [
-//     {
-//         'xref': 'paper',
-//         'yref': 'paper',
-//         'x': 0.23,
-//         'y': 0.45,
-//         'text': '50',
-//         'showarrow': False
-//     }
-// ],
-//     title: 'Belly Botton Washing Frequency',
-//     xaxis: {visible: false, range: [-1, 1]},
-//     yaxis: {visible: false, range: [-1, 1]}
-//   };
+  var layout = {
+    'shapes': [
+      {
+        "x0": 0.5,
+        "x1": x,
+        "y0": 0.5,
+        "y1": y,
+        "line": {
+          "color": "#830308",
+          "width": 5
+        },
+        "type": "line"
+      }
+  ],
+    title: {text: 'Belly Button Washing Frequency', font:{size:20}},
+    xaxis: {visible: false, range: [-1, 1]},
+    yaxis: {visible: false, range: [-1, 1]}
+  };
 
-//   Plotly.plot('gauge', trace3, layout)
+  Plotly.plot('gauge', trace3, layout)
 
   }
   init();
