@@ -66,9 +66,10 @@
     marker: {
     color: otu_ids,
     colorscale: "Earth",
-    size: sample_values 
+    size: sample_values  
   }
   }];
+
   var layout = {
     title: {text: 'Sample Values of each individual samples by OTUs Id', font:{size:20}},
     xaxis: {
@@ -78,7 +79,25 @@
   Plotly.newPlot("bubble", trace2, layout);
 
   // Create Gauge Chart Trace
-  var trace3 = [{
+
+// needle
+var degrees = 180 - 20*metaDataWfreq, radius = 0.47;
+// console.log(degrees);
+var radians = degrees * Math.PI / 180;
+// console.log(radians);
+var x = radius * Math.cos(radians);
+// console.log(x);
+var y = radius * Math.sin(radians);
+// console.log(y);
+
+  var trace3 = [
+    {
+      type: "scatter",
+      x:[0],y:[0],
+      marker: { size: 12, color: "#830308" },
+      showlegend: false
+  },
+    {
     type: 'pie',
     showlegend: false,
     hole: 0.4,
@@ -92,38 +111,26 @@
       colors: ["#f8f3ec","#f4f1e5","#e9e6ca","#e5e7b3","#d5e49d","#b7cc92","#8cbf88","#8abb8f","#85b48a","#ffffff"],
       labels: ['0-1','1-2','2-3','3-4','4-5','5-6','6-7','7-8','8-9'],
       hoverinfo: 'label'}
-  }]
-
-  // needle
-  var degrees = metaDataWfreq, radius = .5
-  console.log(degrees)
-  var radians = degrees * Math.PI / 180
-  console.log(radians)
-  var x = radius * Math.cos(radians) 
-  console.log(x)
-  var y = radius * Math.sin(radians)
+  }];
 
   var layout = {
-    'shapes': [
+    shapes: [
       {
-        "x0": 0.5,
-        "x1": x,
-        "y0": 0.5,
-        "y1": y,
-        "line": {
+        x0:0,y0:0,
+        x1:x,y1:y,
+        type: "line",
+        line: {
           "color": "#830308",
-          "width": 5
-        },
-        "type": "line"
+          "width":4
+        }
       }
   ],
-    title: {text: 'Belly Button Washing Frequency', font:{size:20}},
+    title: {text: 'Belly Button Washing Frequency<br> Scrubs per Week', font:{size:17}},
     xaxis: {visible: false, range: [-1, 1]},
     yaxis: {visible: false, range: [-1, 1]}
   };
 
-  Plotly.plot('gauge', trace3, layout)
-
+  Plotly.newPlot('gauge', trace3, layout)
   }
   init();
   
